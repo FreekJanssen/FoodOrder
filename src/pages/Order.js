@@ -33,7 +33,7 @@ export default function Order() {
         <Col md={9}>
         {mealNames.map((meal) => {
           return (
-            <p>
+            <p style={{padding: '5px', marginTop: '5px', border: '1px solid yellow'}}>
               {meal.meal}, 
               {meal.filling} 
               with {meal.toppings.map(topping => <span>{topping}</span>)}
