@@ -18,6 +18,9 @@ export default (state = initialState, action) => {
         mealCompositions: [...state.mealCompositions, action.payload.meal],
         mealNames: [...state.mealNames, action.payload.names] 
       };
+    case 'ORDER_COMPLETED':
+      const { customerAddress, customerPhone } = action.payload;
+      return {...state, customerAddress, customerPhone};
     default:
       return state;
   };
