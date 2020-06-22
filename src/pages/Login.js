@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { adminLogin } from "../store/admin/actions";
-//import { selectToken } from "../../store/user/selectors";
+import { selectAdminToken } from "../store/admin/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
@@ -12,14 +12,14 @@ export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  //const token = useSelector(selectToken);
+  const adminToken = useSelector(selectAdminToken);
   const history = useHistory();
 
-/*   useEffect(() => {
-    if (token !== null) {
+  useEffect(() => {
+    if (adminToken !== null) {
       history.push("/");
     }
-  }, [token, history]); */
+  }, [adminToken, history]);
 
   function submit(e) {
     //e.preventDefault();

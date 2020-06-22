@@ -6,6 +6,9 @@ export default (state = initialState, action) => {
     case 'LOGIN_SUCCESS':
       localStorage.setItem('adminToken', action.payload);
       return { ...state, token: action.payload};
+    case 'LOGOUT':
+      localStorage.removeItem('adminToken');
+      return {...initialState, token: null };
     default:
       return state;
   };
