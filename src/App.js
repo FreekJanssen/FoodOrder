@@ -5,6 +5,7 @@ import NavBar from './components/Navigation/index';
 
 import Home from './pages/Home.js';
 import Order from './pages/Order.js';
+import Login from './pages/Login.js';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route patch='/order' component={Order} />
+        <Route path='/order' component={Order} />
+        <Route path='/admin' component={Login} />
       </Switch>
     </div>
   );
