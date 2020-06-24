@@ -3,7 +3,6 @@ import { Col } from 'react-bootstrap';
 import './OrderCard.css';
 
 export default function OrderCard(props) {
-  console.log(props);
   return (
     <div className='col-md-3 p-1 mt-5'>
       <div className='orderCard'>
@@ -21,8 +20,10 @@ export default function OrderCard(props) {
           )
         })}
       </div>
-      <button style={{display: 'flex', alignSelf: 'start'}}>Done</button>
+      <div className="row justify-content-end">
+        <button className='col-6 mr-5' value={props.id} onClick={props.orderDone}>Done</button>
       </div>
+    </div>
     </div>
   )
 }
