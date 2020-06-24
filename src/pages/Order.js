@@ -17,6 +17,7 @@ export default function Order() {
   const initialState = { address: 'Bijv. Voorstraat 1' , phone: 'Voer je telefoonnummer in' }
   const [customerAddress, setCustomerAddress] = useState(initialState.address);
   const [customerPhone, setCustomerPhone] = useState(initialState.phone);
+  const [ordered, setOrdered] = useState(false);
 
 	useEffect(() => {
 		dispatch(fetchMenu)
@@ -32,27 +33,34 @@ export default function Order() {
     if (customerAddress === initialState.address || customerPhone === initialState.phone) return;
     if (order.mealCompositions.length === 0) return;
     dispatch(orderComplete(customerAddress, customerPhone));
+    setOrdered(true);
   }
 
   function orderBar () {
     if (order.mealCompositions.length === 0) return <Container style={style}/>
     const { mealNames, totalPrice } = order;
     return (
-      <Container style={style}>
+      <Container fluid style={style}>
         <Row>
         <Col md={9}>
         {mealNames.map((meal, i) => {
           return (
             <p key={i} style={{padding: '5px', marginTop: '5px', border: '1px solid yellow'}}>
-              {meal.meal}, 
-              {meal.filling} 
-              with {meal.toppings.map((topping, i) => <span key={i}>{topping}</span>)}
+              {meal.meal},{' '} 
+              {meal.filling}{' '} 
+              with {meal.toppings.map((topping, i) => <span key={i}>{topping+' '}</span>)}
               and {meal.salsa}
             </p>
           )
         })}
         </Col>
-        <Col md={3}>
+        {ordered 
+        ? <Col md={3}>
+          <h2>Order received! <br/>
+            Delivery will take approximately 30 minutes!
+          </h2>
+        </Col>        
+        : <Col md={3}>
           <Form.Group>
             <Form.Label>Address</Form.Label>
             <Form.Control size="sm" type="text" 
@@ -65,7 +73,7 @@ export default function Order() {
               <Button onClick={submitOrder}>ORDER</Button>
             </p>
           </Form.Group>
-        </Col>
+        </Col>}
         </Row>
       </Container>
     )
