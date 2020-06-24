@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import OrderCard from '../components/OrderCard';
+import axios from 'axios';
 
+import OrderCard from '../components/OrderCard';
 import { Container, Col, Row } from 'react-bootstrap';
 
 export default function CurrentOrders() {
@@ -20,13 +21,24 @@ export default function CurrentOrders() {
     }
   }, [listening, orders]);
 
-  //if (orders.length === 0) return <></>
+  async function orderDone(event) {
+    const orderId = parseInt(event.target.value);
+    setOrders(orders.filter(o => o.id !== orderId));
+
+    try{
+      const response = await axios.patch(`http://localhost:4000/order/${orderId}/done`);
+      console.log(response.data.message);
+    }catch(e){
+      console.log(e.message);
+    };
+  };
+
   return (
     <Container>
       <Row>
       {orders.map((order) => {
         if (!!order.completed) return null;
-        return <OrderCard {...order} />
+        return <OrderCard {...order} orderDone={orderDone}/>
       })}
       </Row>
     </Container>
