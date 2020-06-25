@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { emojis } from './emoji';
+
 import { Container, Button, Row, Col } from 'react-bootstrap';
 
 import { addMealToOrder } from '../../store/order/actions';
+import './Order.css'
 
 export default function OrderForm(props) {
   const dispatch = useDispatch();
@@ -14,13 +17,22 @@ export default function OrderForm(props) {
   
 
   function chooseOne (items, group) {
-
+    
   return (
-    <Col xs={12} md={3}>
-      <h2>Choose your {group.toUpperCase()}</h2>
+    <Col xs={12} md={3} className='mt-3 mb-3 chooseOne'>
+      <h2 className='mb-4'>Choose Your 
+        <h3>{group.toUpperCase()} {group === 'meal' ? <span>€ 9.80</span> : null}</h3>
+      </h2>
         {items.map((item, i) => {
-          const style = (item.id === state[group]) ? {backgroundColor: 'black'} : null;
-          return ( 
+          const style = (item.id === state[group]) 
+          ? {backgroundColor: 'yellow', borderRadius: '50%', borderColor: 'yellow'} 
+          : {backgroundColor: 'transparent', border: 'none'};
+          return (             
+            <Row className='mt-2'>
+            <Col xs={{span: 6, offset: 2}} md={{span: 9, offset: 0}} className='menuItem'>
+              {item.name}
+            </Col>
+            <Col xs={4} md={3}>
             <Button
               key={group+i}
               style={style}
@@ -32,8 +44,10 @@ export default function OrderForm(props) {
                 setNaming({...naming, [group]: item.name})
               }} 
             >
-              {item.name}
+              {emojis[group][item.id]}
             </Button>
+            </Col>
+            </Row>
           )
         })}
     </Col>
@@ -43,11 +57,18 @@ export default function OrderForm(props) {
   function chooseMultiple(items, group) {
 
     return (
-      <Col>
-        <h2>Choose your {group.toUpperCase()}</h2>
+      <Col className='mt-3 mb-3'>
+        <h2 className='mb-4'>Choose Your <h3>{group.toUpperCase()}</h3></h2>
           {items.map((item, i) => {
-            const style = (state[group].includes(item.id)) ? {backgroundColor: 'black'} : null;
-            return ( 
+            const style = (state[group].includes(item.id)) 
+            ? {backgroundColor: 'yellow', borderRadius: '50%', borderColor: 'yellow'} 
+            : {backgroundColor: 'transparent', border: 'none'};
+            return (
+             <Row className='mt-2'>
+              <Col xs={{span: 6, offset: 2}} md={{span: 9, offset: 0}} className='menuItem'>
+                {item.name}
+              </Col>
+              <Col xs={4} md={3}>
               <Button
                 key={group+i}
                 style={style}
@@ -64,8 +85,10 @@ export default function OrderForm(props) {
                   }
                 }} 
               >
-                {item.name}
+                {emojis[group][item.id]}
               </Button>
+              </Col>
+              </Row>
             )
           })}
       </Col>
@@ -79,15 +102,19 @@ export default function OrderForm(props) {
   }
 
   if (!meals) return null;
-  return <Container>
-          <Row>
+  return <Container className='mt-2'>
+          <Row className='orderMenu' >
             {chooseOne(meals, 'meal')}
             {chooseOne(fillings, 'filling')}
             {chooseOne(salsas, 'salsa')}
             {chooseMultiple(toppings, 'toppings')}
           </Row>
-          {(state.meal && state.filling && state.salsa) 
-          ? <Button onClick={addOrder}>Add to order</Button> 
-          : null}
+          <Row className='pt-2 pb-1 mb-2 addButtonWrap'>        
+            <Button
+              disabled={!state.meal || !state.filling || !state.salsa || !state.toppings.length} 
+              onClick={addOrder}>
+              Add to order!
+            </Button> 
+          </Row>
         </Container>
 };
