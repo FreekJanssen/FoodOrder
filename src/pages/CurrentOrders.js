@@ -34,11 +34,11 @@ export default function CurrentOrders() {
   };
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
       {orders.map((order) => {
         if (!!order.completed) return null;
-        return <OrderCard {...order} orderDone={orderDone}/>
+        return <OrderCard key={order.id} {...order} orderDone={orderDone}/>
       })}
       </Row>
     </Container>

@@ -28,7 +28,7 @@ export default function OrderForm(props) {
           ? {backgroundColor: 'yellow', borderRadius: '50%', borderColor: 'yellow'} 
           : {backgroundColor: 'transparent', border: 'none'};
           return (             
-            <Row className='mt-2'>
+            <Row key={i} className='mt-2'>
             <Col xs={{span: 6, offset: 2}} md={{span: 9, offset: 0}} className='menuItem'>
               {item.name}
             </Col>
@@ -64,7 +64,7 @@ export default function OrderForm(props) {
             ? {backgroundColor: 'yellow', borderRadius: '50%', borderColor: 'yellow'} 
             : {backgroundColor: 'transparent', border: 'none'};
             return (
-             <Row className='mt-2'>
+             <Row key={i} className='mt-2'>
               <Col xs={{span: 6, offset: 2}} md={{span: 9, offset: 0}} className='menuItem'>
                 {item.name}
               </Col>
