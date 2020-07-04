@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { adminLogin } from "../store/admin/actions";
 import { selectAdminToken } from "../store/admin/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Col } from "react-bootstrap";
 
 export default function SignUp() {

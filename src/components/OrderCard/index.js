@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Container } from 'react-bootstrap';
+import { Col, Container } from 'react-bootstrap';
 import './OrderCard.css';
 
 export default function OrderCard(props) {
