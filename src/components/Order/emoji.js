@@ -27,7 +27,3 @@ export const emojis = {
     '7': '🥑'
   }
 }
-/*   fillings:
-  salsas:
-  toppings:
-} */

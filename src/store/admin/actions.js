@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { apiUrl } from '../../config/constants';
 
 export function adminLogin(username, password) {
   return async (dispatch, getState) => {
 
     try {
-      const response = await axios.post(`http://localhost:4000/login`, {
+      const response = await axios.post(`${apiUrl}/login`, {
         username,
         password
       });

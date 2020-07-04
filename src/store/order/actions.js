@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiUrl } from '../../config/constants';
 
 export function addMealToOrder(meal, names){
   return { type: 'ADD_MEAL', payload: { meal, names } };
@@ -12,10 +13,9 @@ export function orderComplete(customerAddress, customerPhone){
 
     try{
       const response = await axios.post(
-        `http://localhost:4000/order`,
+        `${apiUrl}/order`,
         { order }
       );  
-      //dispatch(success(response.data));
     }catch(e){
       console.log(e)
     };

@@ -22,8 +22,6 @@ export default function SignUp() {
   }, [adminToken, history]);
 
   function submit(e) {
-    //e.preventDefault();
-
     dispatch(adminLogin(username, password));
 
     setUsername("");
