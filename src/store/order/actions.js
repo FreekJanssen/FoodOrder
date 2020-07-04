@@ -12,7 +12,7 @@ export function orderComplete(customerAddress, customerPhone){
     const { order } = getState();
 
     try{
-      const response = await axios.post(
+      await axios.post(
         `${apiUrl}/order`,
         { order }
       );  

@@ -37,7 +37,7 @@ export default function Order() {
     if (order.mealCompositions.length === 0) return null;
     const { mealNames, totalPrice } = order;
     return (
-      <Container className='pt-3' fluid className='orderBar'>
+      <Container className='pt-3 orderBar' fluid >
         <Row className='pr-2'>
         <Col md={9}>
         {mealNames.map((meal, i) => {
