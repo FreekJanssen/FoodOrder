@@ -1,0 +1,10 @@
+.priceTag span{
+  font-size: 20px;
+  color: yellow;
+}
+.priceTag{
+  font-weight: bold;
+}
+.orderBar{
+    background-color: #ee1c76;
+}

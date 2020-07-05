@@ -1,0 +1,25 @@
+.orderCol {
+  display: flex;
+}
+
+.orderCard {
+  border: 2px solid black;
+  padding-top: 4px;
+  position: relative;
+}
+.mealWrap{
+  border: 1px solid black;
+  padding-top: 6px;
+  padding-left: 2px;
+  align-self: stretch;
+}
+.doneButton{
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+}
+.placedAt{
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+}
