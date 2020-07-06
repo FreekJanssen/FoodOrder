@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import Loading from '../Loading';
 import { emojis } from './emoji';
 
 import { Container, Button, Row, Col } from 'react-bootstrap';
@@ -21,7 +22,7 @@ export default function OrderForm(props) {
   return (
     <Col xs={12} md={3} className='mt-3 mb-3 chooseOne'>
       <h2 className='mb-4'>Choose Your 
-        <h3>{group.toUpperCase()} {group === 'meal' ? <span>€ 9.80</span> : null}</h3>
+      <h3>{group.toUpperCase()} {group === 'meal' && <span>€ 9.90</span>}</h3>
       </h2>
         {items.map((item, i) => {
           const style = (item.id === state[group]) 
@@ -101,20 +102,22 @@ export default function OrderForm(props) {
     setNaming({ meal: '', filling: '', toppings: [], salsa: ''});
   }
 
-  if (!meals) return null;
-  return <Container className='mt-2'>
-          <Row className='orderMenu' >
-            {chooseOne(meals, 'meal')}
-            {chooseOne(fillings, 'filling')}
-            {chooseOne(salsas, 'salsa')}
-            {chooseMultiple(toppings, 'toppings')}
-          </Row>
-          <Row className='pt-2 pb-1 mb-2 addButtonWrap'>        
-            <Button
-              disabled={!state.meal || !state.filling || !state.salsa || !state.toppings.length} 
-              onClick={addOrder}>
-              Add to order!
-            </Button> 
-          </Row>
-        </Container>
+  if (!meals || !toppings) return <Loading />;
+  return (
+    <Container className='mt-2'>
+      <Row className='orderMenu' >
+        {chooseOne(meals, 'meal')}
+        {chooseOne(fillings, 'filling')}
+        {chooseOne(salsas, 'salsa')}
+        {chooseMultiple(toppings, 'toppings')}
+      </Row>
+      <Row className='pt-2 pb-1 mb-2 addButtonWrap'>        
+        <Button
+          disabled={!state.meal || !state.filling || !state.salsa || !state.toppings.length} 
+          onClick={addOrder}>
+          Add to order!
+        </Button> 
+      </Row>
+    </Container>
+  );
 };
