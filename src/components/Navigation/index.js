@@ -37,8 +37,8 @@ export default function NavBar() {
  		<Navbar style={{backgroundColor: '#ee1c76'}} expand="lg">
 			<Nav style={{ width: "100%" }} fill>
 				<Nav.Item>
-					<Nav.Link as={NavLink} to='/order'>
-        	Order Online
+					<Nav.Link as={NavLink} to='/'>
+        	Home
       		</Nav.Link>
 				</Nav.Item>
         {adminToken ? loggedIn() : notLoggedIn()}
