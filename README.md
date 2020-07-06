@@ -5,7 +5,7 @@ Visit the website [here](https://burrito-order.netlify.app).
 ### About 
 
 Burrito Order is web-application that allows customers to quickly order Mexican food.
-On the 'order online' page, customers can compose their meals, and add them to their order.
+On the home page, customers can compose their meals, and add them to their order.
 Admin accounts can view orders on a seperate page, which is updated automatically when a new order is placed.
 It is based off of a real restaurant that quickly established this concept during COVID-lockdown.
 
