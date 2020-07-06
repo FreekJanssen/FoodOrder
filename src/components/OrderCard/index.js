@@ -32,5 +32,5 @@ export default function OrderCard(props) {
           <button className='doneButton' value={props.id} onClick={props.orderDone}>Done</button>       
       </Container>
     </Col>
-  )
-}
+  );
+};

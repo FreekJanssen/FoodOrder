@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Col, Row, Container, Button, Form } from 'react-bootstrap'
 
 import OrderForm from '../components/Order';
+import Loading from '../components/Loading';
 
 import { fetchMenu } from '../store/menu/actions.js';
 import { orderComplete } from '../store/order/actions';
@@ -88,7 +89,7 @@ export default function Order() {
     )
   }
 
-  if (!menu) return null;
+  if (!menu) return <Loading />;
   return ( 
     <>
       <OrderForm {...menu}/>

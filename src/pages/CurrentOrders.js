@@ -19,7 +19,7 @@ export default function CurrentOrders() {
       };
 
       setListening(true);
-    }
+    };
   }, [listening, orders]);
 
   async function orderDone(event) {
@@ -43,5 +43,5 @@ export default function CurrentOrders() {
       })}
       </Row>
     </Container>
-  )
-}
+  );
+};
